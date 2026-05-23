@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Pages\Auth\CustomLogin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -20,19 +19,17 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class AdminPanelProvider extends PanelProvider
+class UsuarioPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default() // Adicione isso se esse for seu painel principal
-            ->id('admin')
-            ->path('admin')
-            ->login(CustomLogin::class) 
+            ->id('usuario')
+            ->path('usuario')
+            ->login()
             ->colors([
                 'primary' => Color::Amber,
             ])
-            // Ajustei aqui para as pastas padrão que o Filament usa:
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

@@ -20,25 +20,23 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class AdminPanelProvider extends PanelProvider
+class PortariaPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default() // Adicione isso se esse for seu painel principal
-            ->id('admin')
-            ->path('admin')
-            ->login(CustomLogin::class) 
+            ->id('portaria')
+            ->path('portaria')
+            ->login(CustomLogin::class)
             ->colors([
                 'primary' => Color::Amber,
             ])
-            // Ajustei aqui para as pastas padrão que o Filament usa:
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
+            ->discoverResources(in: app_path('Filament/Portaria/Resources'), for: 'App\Filament\Portaria\Resources')
+            ->discoverPages(in: app_path('Filament/Portaria/Pages'), for: 'App\Filament\Portaria\Pages')
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
+            ->discoverWidgets(in: app_path('Filament/Portaria/Widgets'), for: 'App\Filament\Portaria\Widgets')
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
